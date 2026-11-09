@@ -1,0 +1,12 @@
+{
+  "user_names": ["林然"],
+  "todos": [
+    { "owner": "林然", "keywords": ["排期"], "mine": true },
+    { "owner": "林然", "keywords": ["竞品", "积分规则"], "mine": true },
+    { "owner": "孙浩", "keywords": ["设计稿"], "mine": false },
+    { "owner": "孙浩", "keywords": ["细化", "两套方案"], "mine": false, "optional": true, "note": "周总让孙浩细化两套方案，和上一条设计稿基本是一件事：单独列出或合并都算对" },
+    { "owner": "陈露", "keywords": ["接口文档"], "mine": false },
+    { "owner": "陈露", "keywords": ["供应商"], "mine": false }
+  ],
+  "forbidden": ["调薪"]
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 安卓 13+ 发通知要授权；眼镜上用 adb pm grant 打开 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- 有了它，纪要生成好时才能从后台把一行提示弹到镜片上；用 adb appops 打开 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:label="会后纪要"
+        android:supportsRtl="false"
+        android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+
+        <!-- 镜片上的一行提示。黑色 = 透明 -->
+        <activity
+            android:name=".GlassesActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|keyboard|navigation|uiMode"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.huihou.glasses.hud">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 散会入口：会中模块（或 adb）发这个广播，把整场会的文字交过来 -->
+        <receiver
+            android:name=".MeetingEndedReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.huihou.glasses.MEETING_ENDED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>
